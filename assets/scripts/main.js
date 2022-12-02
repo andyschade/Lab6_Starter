@@ -21,9 +21,10 @@ function init() {
  * @returns {Array<Object>} An array of recipes found in localStorage
  */
 function getRecipesFromStorage() {
-  // A9. TODO - Complete the functionality as described in this function
+  // A9. - Complete the functionality as described in this function
   //           header. It is possible in only a single line, but should
-  //           be no more than a few lines.
+  //           be no more than a few lines. - Done
+  return JSON.parse(window.localStorage.getItem("recipes"));
 }
 
 /**
@@ -34,11 +35,18 @@ function getRecipesFromStorage() {
  * @param {Array<Object>} recipes An array of recipes
  */
 function addRecipesToDocument(recipes) {
-  // A10. TODO - Get a reference to the <main> element
-  // A11. TODO - Loop through each of the recipes in the passed in array,
+  // A10. - Get a reference to the <main> element - Done
+  let mainRefrence = document.querySelector('main');
+  // A11. - Loop through each of the recipes in the passed in array,
   //            create a <recipe-card> element for each one, and populate
   //            each <recipe-card> with that recipe data using element.data = ...
-  //            Append each element to <main>
+  //            Append each element to <main> - Done
+  for (let i = 0; i < recipes.length; i++) {
+    let recipeElement = document.createElement('recipe-card');
+    recipeElement.data = recipes[i];
+    document.querySelector('main').append(recipeElement);
+  }
+
 }
 
 /**
@@ -60,7 +68,7 @@ function saveRecipesToStorage(recipes) {
 function initFormHandler() {
 
   // B2. TODO - Get a reference to the <form> element
-  
+
   // B3. TODO - Add an event listener for the 'submit' event, which fires when the
   //            submit button is clicked
 
@@ -77,7 +85,7 @@ function initFormHandler() {
 
   // B10. TODO - Get a reference to the "Clear Local Storage" button
   // B11. TODO - Add a click event listener to clear local storage button
-  
+
   // Steps B12 & B13 will occur inside the event listener from step B11
   // B12. TODO - Clear the local storage
   // B13. TODO - Delete the contents of <main>
